@@ -1,0 +1,8 @@
+.DS_Store
+.env
+premio_tronchi.db
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
