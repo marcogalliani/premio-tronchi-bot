@@ -106,6 +106,10 @@ Le variabili seguenti sono gia' preimpostate dal Blueprint, ma puoi modificarle:
 - `FANTACALCIO_VOTI_PAGE_URL`
 - `DATABASE_PATH`
 
+Importante: nel piano Free di Render non sono supportati dischi persistenti per i worker. In questa configurazione `DATABASE_PATH` punta a `/tmp/premio_tronchi.db`, quindi i dati possono essere persi a ogni restart/redeploy.
+
+Se vuoi persistenza reale della classifica su Render, passa a un piano con disk persistente e imposta `DATABASE_PATH` su un path montato dal disco (es. `/var/data/premio_tronchi.db`).
+
 ### 4. Deploy e verifica
 
 1. Avvia il deploy.
