@@ -9,7 +9,7 @@ description = "Bot Telegram per la classifica dei tronchi al fantacalcio"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-  "python-telegram-bot==21.7",
+  "python-telegram-bot[webhooks]==21.7",
   "pandas==2.2.3",
   "openpyxl==3.1.5",
   "requests==2.32.3",
