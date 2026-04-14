@@ -92,7 +92,7 @@ Esegui push del progetto su GitHub/GitLab.
 
 1. Apri Render e seleziona New + -> Blueprint.
 2. Collega il repository.
-3. Render rilevera' automaticamente [render.yaml](render.yaml) e creera' un worker chiamato `premio-tronchi-bot`.
+3. Render rilevera' automaticamente [render.yaml](render.yaml) e creera' un web service chiamato `premio-tronchi-bot`.
 
 ### 3. Configura variabili ambiente
 
@@ -100,20 +100,22 @@ Nel pannello Render del servizio imposta:
 
 - `TELEGRAM_BOT_TOKEN` (obbligatoria)
 - `FANTACALCIO_COOKIE` (consigliata/necessaria per download voti autenticato)
+- `WEBHOOK_URL` (obbligatoria in Render, es. `https://premio-tronchi-bot.onrender.com`)
 
 Le variabili seguenti sono gia' preimpostate dal Blueprint, ma puoi modificarle:
 
 - `FANTACALCIO_VOTI_PAGE_URL`
 - `DATABASE_PATH`
+- `BOT_RUN_MODE`
 
-Importante: nel piano Free di Render non sono supportati dischi persistenti per i worker. In questa configurazione `DATABASE_PATH` punta a `/tmp/premio_tronchi.db`, quindi i dati possono essere persi a ogni restart/redeploy.
+Importante: nel piano Free di Render non sono supportati dischi persistenti per i web service. In questa configurazione `DATABASE_PATH` punta a `/tmp/premio_tronchi.db`, quindi i dati possono essere persi a ogni restart/redeploy.
 
 Se vuoi persistenza reale della classifica su Render, passa a un piano con disk persistente e imposta `DATABASE_PATH` su un path montato dal disco (es. `/var/data/premio_tronchi.db`).
 
 ### 4. Deploy e verifica
 
 1. Avvia il deploy.
-2. Controlla i log: deve comparire il worker in esecuzione senza errori.
+2. Controlla i log: deve comparire il web service in esecuzione senza errori.
 3. Su Telegram testa `/start`, `/aggiorna`, `/classifica`.
 
 Nota: sul piano free il servizio puo' subire limitazioni di risorse o stop. Per massima affidabilita' 24/7 valuta un piano paid.

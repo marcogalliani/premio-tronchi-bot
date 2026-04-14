@@ -1,5 +1,5 @@
 services:
-  - type: worker
+  - type: web
     name: premio-tronchi-bot
     runtime: python
     plan: free
@@ -16,3 +16,7 @@ services:
         sync: false
       - key: DATABASE_PATH
         value: /tmp/premio_tronchi.db
+      - key: BOT_RUN_MODE
+        value: webhook
+      - key: WEBHOOK_URL
+        sync: false

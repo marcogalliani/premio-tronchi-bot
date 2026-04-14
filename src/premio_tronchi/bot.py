@@ -85,3 +85,18 @@ class PremioTronchiBot:
             self._application.run_polling(allowed_updates=Update.ALL_TYPES)
         finally:
             loop.close()
+
+    def run_webhook(self, webhook_url: str, port: int) -> None:
+        # Python 3.14 no longer provides an implicit default loop in main thread.
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            self._application.run_webhook(
+                listen="0.0.0.0",
+                port=port,
+                webhook_url=webhook_url,
+                allowed_updates=Update.ALL_TYPES,
+                drop_pending_updates=True,
+            )
+        finally:
+            loop.close()
