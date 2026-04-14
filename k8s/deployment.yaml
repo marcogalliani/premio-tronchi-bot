@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: premio-tronchi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: premio-tronchi
+  template:
+    metadata:
+      labels:
+        app: premio-tronchi
+    spec:
+      containers:
+        - name: premio-tronchi
+          image: docker.io/marcogalliani/premio-tronchi:latest
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-m", "premio_tronchi"]
+          envFrom:
+            - configMapRef:
+                name: premio-tronchi-config
+            - secretRef:
+                name: premio-tronchi-secret
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: premio-tronchi-data

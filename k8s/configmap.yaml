@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: premio-tronchi-config
+data:
+  FANTACALCIO_VOTI_PAGE_URL: https://www.fantacalcio.it/voti-fantacalcio-serie-a
+  DATABASE_PATH: /data/premio_tronchi.db

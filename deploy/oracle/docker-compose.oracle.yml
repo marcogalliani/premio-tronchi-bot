@@ -1,0 +1,13 @@
+services:
+  premio-tronchi:
+    image: docker.io/marcogalliani/premio-tronchi:latest
+    env_file:
+      - .env
+    environment:
+      DATABASE_PATH: /data/premio_tronchi.db
+    volumes:
+      - premio-tronchi-data:/data
+    restart: unless-stopped
+
+volumes:
+  premio-tronchi-data:
