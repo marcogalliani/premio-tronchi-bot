@@ -64,7 +64,7 @@ class PremioTronchiBot:
         if update.message is None:
             return
 
-        ranking = self._storage.get_ranking(limit=30)
+        ranking = self._storage.get_ranking(limit=10)
         if not ranking:
             await update.message.reply_text(
                 "Classifica vuota. Esegui /aggiorna dopo una giornata per popolarla."
