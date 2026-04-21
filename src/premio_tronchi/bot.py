@@ -71,9 +71,15 @@ class PremioTronchiBot:
             )
             return
 
-        lines = ["Classifica tronchi:"]
+        lines = ["La classifica aggiornata per il tronco dell’anno é:\n"]
         for idx, row in enumerate(ranking, start=1):
             lines.append(f"{idx}. {row.player_name} - {row.score}")
+        
+        lines.append(
+            "\nRicordiamo a tutti la definizione di tronco: \"Dicasi tronco la punta di una squadra di serie A, idealmente grossa e limitata nei movimenti, la cui caratteristica principale è la finalizzazione. Se questa non avviene, la presenza del tronco su un campo da calcio ha un’utilità modesta, se non dannosa.\"\n\n"
+            "La commissione tronchi si riserva di aggiungere eventuali nuovi tronchi, la cui legnosità si distingua nel corso della stagione.\n"
+            "\nCordialmente, \nOsservatorio tronchi Serie A"
+        )
 
         await update.message.reply_text("\n".join(lines))
 
